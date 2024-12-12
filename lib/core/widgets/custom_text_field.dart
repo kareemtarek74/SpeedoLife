@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../utils/text_styles.dart';
-
 class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField(
       {super.key,
@@ -10,9 +8,11 @@ class CustomTextFormField extends StatelessWidget {
       this.suffixIcon,
       this.controller,
       this.obscureText = false,
-      this.prefixIcon});
+      this.prefixIcon,
+      this.hintStyle});
   final TextInputType? keyboardType;
   final String hintText;
+  final TextStyle? hintStyle;
   final Widget? suffixIcon;
   final TextEditingController? controller;
   final bool obscureText;
@@ -35,9 +35,7 @@ class CustomTextFormField extends StatelessWidget {
           prefixIcon: prefixIcon,
           suffixIcon: suffixIcon,
           hintText: hintText,
-          hintStyle: Styles.styleSemiBold16(context)
-              .copyWith(color: const Color(0xff808080))
-              .copyWith(color: const Color(0xff7F7F7F)),
+          hintStyle: hintStyle,
           contentPadding: const EdgeInsets.all(15),
           border: buildBorder(),
           focusedBorder: buildBorder(),

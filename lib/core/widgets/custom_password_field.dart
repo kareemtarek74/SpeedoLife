@@ -7,8 +7,14 @@ class CustomPasswordField extends StatefulWidget {
   const CustomPasswordField({
     super.key,
     this.controller,
+    this.hintStyle,
+    required this.hintText,
+    this.color,
   });
   final TextEditingController? controller;
+  final TextStyle? hintStyle;
+  final String hintText;
+  final Color? color;
 
   @override
   State<CustomPasswordField> createState() => _CustomPasswordFieldState();
@@ -24,10 +30,12 @@ class _CustomPasswordFieldState extends State<CustomPasswordField> {
         height: 24,
         width: 24,
         fit: BoxFit.scaleDown,
+        color: widget.color,
       ),
       obscureText: obscureText,
       controller: widget.controller,
-      hintText: 'كلمة السر',
+      hintText: widget.hintText,
+      hintStyle: widget.hintStyle,
       suffixIcon: GestureDetector(
         onTap: () {
           setState(() {

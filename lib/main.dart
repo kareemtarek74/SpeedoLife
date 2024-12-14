@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:speedo_life/Features/Auth/presentation/view/widgets/sign_in_view.dart';
+import 'package:speedo_life/Features/Home/presentation/views/main_view.dart';
 import 'package:speedo_life/core/helper_function/on_generate_function.dart';
 
 import 'generated/l10n.dart';
@@ -27,7 +27,7 @@ class SpeedoLifeApp extends StatelessWidget {
       locale: Locale('ar'),
       debugShowCheckedModeBanner: false,
       onGenerateRoute: onGenerateRoute,
-      initialRoute: SignInView.routeName,
+      initialRoute: MainView.routeName,
     );
   }
 }

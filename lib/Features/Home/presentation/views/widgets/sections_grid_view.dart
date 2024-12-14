@@ -4,21 +4,31 @@ import 'package:speedo_life/Features/Home/presentation/views/widgets/section_ite
 class SectionsGridView extends StatelessWidget {
   const SectionsGridView({
     super.key,
+    required this.scrollDirection,
+    required this.childAspectRatio,
+    this.height,
+    this.style,
   });
+  final Axis scrollDirection;
+  final double childAspectRatio;
+  final double? height;
+  final TextStyle? style;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height * .44,
+      height: height,
       child: GridView.builder(
-          scrollDirection: Axis.horizontal,
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          scrollDirection: scrollDirection,
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
-            childAspectRatio: 148 / 96,
+            childAspectRatio: childAspectRatio,
             mainAxisSpacing: 16,
             crossAxisSpacing: 16,
           ),
           itemBuilder: (context, index) {
-            return const SectionItem();
+            return SectionItem(
+              style: style,
+            );
           }),
     );
   }

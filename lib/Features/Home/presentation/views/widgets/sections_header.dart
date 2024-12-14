@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:speedo_life/Features/Sections/presentation/view/sections_view.dart';
 import 'package:speedo_life/core/utils/app_colors.dart';
 
 import '../../../../../core/utils/text_styles.dart';
@@ -10,7 +11,9 @@ class SectionsHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Navigator.pushNamed(context, SectionsView.routeName);
+      },
       child: Row(
         children: [
           Text(

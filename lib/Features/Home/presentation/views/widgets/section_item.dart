@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:speedo_life/core/utils/app_images.dart';
-import 'package:speedo_life/core/utils/text_styles.dart';
 
 class SectionItem extends StatelessWidget {
-  const SectionItem({super.key});
-
+  const SectionItem({super.key, required this.style});
+  final TextStyle? style;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -22,12 +21,11 @@ class SectionItem extends StatelessWidget {
                   child: Image.asset(Assets.imagesWatchs)),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 8, right: 8, bottom: 8),
+              padding: const EdgeInsets.only(left: 8, right: 8, bottom: 0),
               child: Text(
                 'الساعات و الاكسسوارات',
                 textAlign: TextAlign.center,
-                style: Styles.styleSemiBold12(context)
-                    .copyWith(color: const Color(0xff181818)),
+                style: style,
               ),
             )
           ],

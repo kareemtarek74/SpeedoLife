@@ -44,7 +44,13 @@ class HomeViewBody extends StatelessWidget {
                     const SizedBox(
                       height: 8,
                     ),
-                    const SectionsGridView()
+                    SectionsGridView(
+                      scrollDirection: Axis.horizontal,
+                      childAspectRatio: 148 / 96,
+                      height: MediaQuery.of(context).size.height * .44,
+                      style: Styles.styleSemiBold12(context)
+                          .copyWith(color: const Color(0xff181818)),
+                    )
                   ],
                 ),
               ),

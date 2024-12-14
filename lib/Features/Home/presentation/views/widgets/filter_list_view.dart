@@ -9,10 +9,8 @@ class FilterListView extends StatefulWidget {
 }
 
 class FilterListViewState extends State<FilterListView> {
-  // The currently selected index
   int selectedIndex = 0;
 
-  // List of filters
   final List<String> filters = ["الكل", "انتظار", "مكتمل", "مرفوض"];
 
   @override
@@ -23,12 +21,11 @@ class FilterListViewState extends State<FilterListView> {
         scrollDirection: Axis.horizontal,
         itemCount: filters.length,
         itemBuilder: (context, index) {
-          bool isActive =
-              selectedIndex == index; // Check if this item is active
+          bool isActive = selectedIndex == index;
           return GestureDetector(
             onTap: () {
               setState(() {
-                selectedIndex = index; // Update the selected index
+                selectedIndex = index;
               });
             },
             child: AnimatedContainer(
@@ -37,9 +34,7 @@ class FilterListViewState extends State<FilterListView> {
               padding:
                   const EdgeInsets.symmetric(horizontal: 23, vertical: 9.0),
               decoration: BoxDecoration(
-                color: isActive
-                    ? const Color(0xFF1E2546)
-                    : Colors.white, // Active & inactive colors
+                color: isActive ? const Color(0xFF1E2546) : Colors.white,
                 borderRadius: BorderRadius.circular(8.0),
                 border: Border.all(
                   color:

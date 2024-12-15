@@ -41,7 +41,9 @@ class OrdersViewBody extends StatelessWidget {
                     const SizedBox(
                       height: 16,
                     ),
-                    const FilterListView(),
+                    const FilterListView(
+                      filters: ["الكل", "انتظار", "مكتمل", "مرفوض"],
+                    ),
                     const SizedBox(
                       height: 16,
                     ),

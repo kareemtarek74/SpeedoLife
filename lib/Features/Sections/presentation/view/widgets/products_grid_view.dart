@@ -10,6 +10,7 @@ class ProductsGridView extends StatelessWidget {
     return SizedBox(
       height: MediaQuery.sizeOf(context).height,
       child: GridView.builder(
+          physics: const NeverScrollableScrollPhysics(),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
             childAspectRatio: 167 / 303,

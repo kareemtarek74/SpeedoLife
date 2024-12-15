@@ -13,7 +13,12 @@ class CustomAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.white,
+      decoration: const BoxDecoration(
+        color: Colors.white,
+        border: Border.symmetric(
+          horizontal: BorderSide(width: 1, color: Color(0xFFF1F1F1)),
+        ),
+      ),
       child: Row(
         children: [
           const SizedBox(

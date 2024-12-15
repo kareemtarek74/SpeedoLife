@@ -18,6 +18,9 @@ class SectionsGridView extends StatelessWidget {
     return SizedBox(
       height: height,
       child: GridView.builder(
+          physics: scrollDirection == Axis.vertical
+              ? const NeverScrollableScrollPhysics()
+              : null,
           scrollDirection: scrollDirection,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,

@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:speedo_life/Features/Home/Domain/Entities/buttom_vavigation_bar_entity.dart';
-import 'package:speedo_life/Features/Home/presentation/views/widgets/navigation_bar_item.dart';
+import 'package:speedo_life/Features/Main/Domain/Entities/buttom_vavigation_bar_entity.dart';
+import 'package:speedo_life/Features/Main/presentation/views/widgets/navigation_bar_item.dart';
 
-class CustomBottomNavigationBar extends StatefulWidget {
-  const CustomBottomNavigationBar({super.key, required this.onItemTapped});
+class CustomBottomNavigationBar extends StatelessWidget {
+  const CustomBottomNavigationBar({
+    super.key,
+    required this.onItemTapped,
+    required this.selectedIndex,
+  });
+
   final ValueChanged<int> onItemTapped;
-
-  @override
-  State<CustomBottomNavigationBar> createState() =>
-      _CustomBottomNavigationBarState();
-}
-
-class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
-  int selectedIndex = 0;
+  final int selectedIndex;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +31,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
             blurRadius: 25,
             offset: Offset(0, -2),
             spreadRadius: 0,
-          )
+          ),
         ],
       ),
       child: Row(
@@ -43,12 +41,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
 
           return Expanded(
             child: GestureDetector(
-              onTap: () {
-                setState(() {
-                  selectedIndex = index;
-                  widget.onItemTapped(index);
-                });
-              },
+              onTap: () => onItemTapped(index),
               child: AnimatedSwitcher(
                 duration: const Duration(milliseconds: 150),
                 transitionBuilder: (child, animation) {
@@ -59,7 +52,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
                 },
                 child: NaivgationBarItem(
                   key: ValueKey(index == selectedIndex),
-                  isSelected: selectedIndex == index,
+                  isSelected: index == selectedIndex,
                   bottomNavigationBarEntity: entity,
                 ),
               ),

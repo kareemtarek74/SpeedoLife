@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:speedo_life/Features/Home/presentation/views/favourite_view.dart';
-import 'package:speedo_life/Features/Home/presentation/views/orders_view.dart';
-import 'package:speedo_life/Features/Home/presentation/views/sale_view.dart';
-import 'package:speedo_life/Features/Home/presentation/views/user_view.dart';
+import 'package:speedo_life/Features/Favourite/User/presentation/pages/user_view.dart';
+import 'package:speedo_life/Features/Favourite/presentation/pages/favourite_view.dart';
+import 'package:speedo_life/Features/Main/presentation/views/sale_view.dart';
+import 'package:speedo_life/Features/Orders/presentation/pages/orders_view.dart';
 
-import '../home_view.dart';
+import '../../../../Home/presentation/pages/home_view.dart';
 
 class MainViewBody extends StatelessWidget {
   const MainViewBody({

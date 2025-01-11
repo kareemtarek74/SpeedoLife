@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:speedo_life/Features/Home/presentation/views/widgets/custom_home_app_bar.dart';
-import 'package:speedo_life/Features/Home/presentation/views/widgets/home_page_view_section.dart';
-import 'package:speedo_life/Features/Home/presentation/views/widgets/search_text_field.dart';
-import 'package:speedo_life/Features/Home/presentation/views/widgets/sections_grid_view.dart';
-import 'package:speedo_life/Features/Home/presentation/views/widgets/sections_header.dart';
+import 'package:speedo_life/Features/Home/presentation/widgets/custom_home_app_bar.dart';
+import 'package:speedo_life/Features/Home/presentation/widgets/home_page_view_section.dart';
+import 'package:speedo_life/Features/Home/presentation/widgets/search_text_field.dart';
+import 'package:speedo_life/Features/Home/presentation/widgets/sections_grid_view.dart';
+import 'package:speedo_life/Features/Home/presentation/widgets/sections_header.dart';
 import 'package:speedo_life/core/utils/text_styles.dart';
 
 class HomeViewBody extends StatelessWidget {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:speedo_life/Features/Home/presentation/views/widgets/custom_dot.dart';
+import 'package:speedo_life/Features/Main/presentation/views/widgets/custom_dot.dart';
 
 class CustomDotsIndicator extends StatelessWidget {
   const CustomDotsIndicator({super.key, required this.pageNum});

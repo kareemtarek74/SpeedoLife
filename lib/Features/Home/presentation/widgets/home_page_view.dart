@@ -1,6 +1,6 @@
 import 'package:expandable_page_view/expandable_page_view.dart';
 import 'package:flutter/material.dart';
-import 'package:speedo_life/Features/Home/presentation/views/widgets/my_card.dart';
+import 'package:speedo_life/Features/Main/presentation/views/widgets/my_card.dart';
 
 class HomePageView extends StatelessWidget {
   const HomePageView({super.key, required this.controller});

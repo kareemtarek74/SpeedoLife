@@ -3,7 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:speedo_life/Features/Sections/presentation/view/sections_view.dart';
 import 'package:speedo_life/core/utils/app_colors.dart';
 
-import '../../../../../core/utils/text_styles.dart';
+import '../../../../core/utils/text_styles.dart';
 
 class SectionsHeader extends StatelessWidget {
   const SectionsHeader({super.key});

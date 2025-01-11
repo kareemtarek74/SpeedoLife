@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:speedo_life/Features/Home/presentation/views/widgets/main_view_body.dart';
+import 'package:speedo_life/Features/Main/presentation/views/widgets/main_view_body.dart';
 
 class MainViewBodyBlocConsumer extends StatelessWidget {
   const MainViewBodyBlocConsumer({

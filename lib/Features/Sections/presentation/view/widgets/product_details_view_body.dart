@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:speedo_life/Features/Home/presentation/views/widgets/filter_list_view.dart';
+import 'package:speedo_life/Features/Orders/presentation/widgets/filter_list_view.dart';
 import 'package:speedo_life/Features/Sections/presentation/view/widgets/colored_filter_list.dart';
 import 'package:speedo_life/Features/Sections/presentation/view/widgets/product_image.dart';
 import 'package:speedo_life/Features/Sections/presentation/view/widgets/product_text_span.dart';
@@ -103,6 +103,7 @@ class ProductDetailsViewBody extends StatelessWidget {
                       height: 8,
                     ),
                     const FilterListView(
+                      horizontalPadding: 18,
                       filters: ["صغير (٧٨٧د)", 'متوسط (٩٨٧د)', "كبير (٩٨٠د)"],
                     ),
                     const SizedBox(

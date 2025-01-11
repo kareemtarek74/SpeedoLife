@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:speedo_life/Features/Home/presentation/views/widgets/section_item.dart';
+import 'package:speedo_life/Features/Home/presentation/widgets/section_item.dart';
 
 class SectionsGridView extends StatelessWidget {
   const SectionsGridView({

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:speedo_life/Features/Auth/presentation/view/widgets/sign_in_view.dart';
-import 'package:speedo_life/Features/Home/presentation/views/main_view.dart';
+import 'package:speedo_life/Features/Main/presentation/views/main_view.dart';
 import 'package:speedo_life/Features/Sections/presentation/view/product_details_view.dart';
 import 'package:speedo_life/Features/Sections/presentation/view/section_products_page_view.dart';
 

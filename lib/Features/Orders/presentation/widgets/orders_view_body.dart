@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:speedo_life/Features/Home/presentation/views/widgets/custom_home_app_bar.dart';
-import 'package:speedo_life/Features/Home/presentation/views/widgets/filter_list_view.dart';
-import 'package:speedo_life/Features/Home/presentation/views/widgets/orders_list_view.dart';
+import 'package:speedo_life/Features/Home/presentation/widgets/custom_home_app_bar.dart';
+import 'package:speedo_life/Features/Orders/presentation/widgets/filter_list_view.dart';
+import 'package:speedo_life/Features/Orders/presentation/widgets/orders_list_view.dart';
 import 'package:speedo_life/core/utils/text_styles.dart';
 
 class OrdersViewBody extends StatelessWidget {
@@ -42,6 +42,7 @@ class OrdersViewBody extends StatelessWidget {
                       height: 16,
                     ),
                     const FilterListView(
+                      horizontalPadding: 26,
                       filters: ["الكل", "انتظار", "مكتمل", "مرفوض"],
                     ),
                     const SizedBox(

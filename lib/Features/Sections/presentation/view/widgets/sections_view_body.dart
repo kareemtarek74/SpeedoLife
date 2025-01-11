@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:speedo_life/Features/Home/presentation/views/widgets/sections_grid_view.dart';
+import 'package:speedo_life/Features/Home/presentation/widgets/sections_grid_view.dart';
 import 'package:speedo_life/core/utils/text_styles.dart';
 import 'package:speedo_life/core/widgets/custom_app_bar.dart';
 

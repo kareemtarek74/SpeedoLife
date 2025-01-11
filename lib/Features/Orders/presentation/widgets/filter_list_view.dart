@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:speedo_life/core/utils/text_styles.dart';
 
 class FilterListView extends StatefulWidget {
-  const FilterListView({super.key, required this.filters});
+  const FilterListView(
+      {super.key, required this.filters, required this.horizontalPadding});
   final List<String> filters;
+  final double horizontalPadding;
 
   @override
   FilterListViewState createState() => FilterListViewState();
@@ -30,8 +32,8 @@ class FilterListViewState extends State<FilterListView> {
             child: AnimatedContainer(
               duration: const Duration(milliseconds: 200),
               margin: const EdgeInsets.symmetric(horizontal: 2.0),
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 18, vertical: 9.0),
+              padding: EdgeInsets.symmetric(
+                  horizontal: widget.horizontalPadding, vertical: 9.0),
               decoration: BoxDecoration(
                 color: isActive ? const Color(0xFF1E2546) : Colors.white,
                 borderRadius: BorderRadius.circular(8.0),

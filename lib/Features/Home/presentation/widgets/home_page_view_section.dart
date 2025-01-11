@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:speedo_life/Features/Home/presentation/views/widgets/home_page_view.dart';
+import 'package:speedo_life/Features/Home/presentation/widgets/home_page_view.dart';
 
-import 'custom_dots_indicator.dart';
+import '../../../Main/presentation/views/widgets/custom_dots_indicator.dart';
 
 class HomePageViewSection extends StatefulWidget {
   const HomePageViewSection({

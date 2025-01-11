@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:speedo_life/Features/Home/Domain/Entities/buttom_vavigation_bar_entity.dart';
-import 'package:speedo_life/Features/Home/presentation/views/widgets/active_item.dart';
-import 'package:speedo_life/Features/Home/presentation/views/widgets/in_active_item.dart';
+import 'package:speedo_life/Features/Main/Domain/Entities/buttom_vavigation_bar_entity.dart';
+import 'package:speedo_life/Features/Main/presentation/views/widgets/active_item.dart';
+import 'package:speedo_life/Features/Main/presentation/views/widgets/in_active_item.dart';
 
 class NaivgationBarItem extends StatelessWidget {
   const NaivgationBarItem(

@@ -6,6 +6,8 @@ import 'package:speedo_life/Features/Home/presentation/widgets/home_page_view_se
 import 'package:speedo_life/Features/Home/presentation/widgets/search_text_field.dart';
 import 'package:speedo_life/Features/Home/presentation/widgets/sections_header.dart';
 import 'package:speedo_life/Features/Home/presentation/widgets/sections_list_view.dart';
+import 'package:speedo_life/Features/Home/presentation/widgets/shimmer_categories.dart';
+import 'package:speedo_life/Features/Home/presentation/widgets/shimmer_slider.dart';
 import 'package:speedo_life/core/utils/text_styles.dart';
 
 class HomeViewBody extends StatelessWidget {
@@ -38,8 +40,7 @@ class HomeViewBody extends StatelessWidget {
                     BlocBuilder<HomeCubit, HomeState>(
                       builder: (context, state) {
                         if (state is HomeLoading) {
-                          return const Center(
-                              child: CircularProgressIndicator());
+                          return const ShimmerSlider();
                         } else if (state is HomeLoaded) {
                           return HomePageViewSection(
                             sliders: state.data['sliders'],
@@ -59,8 +60,7 @@ class HomeViewBody extends StatelessWidget {
                     BlocBuilder<HomeCubit, HomeState>(
                       builder: (context, state) {
                         if (state is HomeLoading) {
-                          return const Center(
-                              child: CircularProgressIndicator());
+                          return const ShimmerCategories();
                         } else if (state is HomeLoaded) {
                           return SectionsHorizontalListView(
                             height: MediaQuery.of(context).size.height * .3,

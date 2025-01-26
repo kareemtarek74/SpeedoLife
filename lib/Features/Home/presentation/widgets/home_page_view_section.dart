@@ -4,9 +4,9 @@ import 'package:speedo_life/Features/Home/presentation/widgets/home_page_view.da
 import '../../../Main/presentation/views/widgets/custom_dots_indicator.dart';
 
 class HomePageViewSection extends StatefulWidget {
-  const HomePageViewSection({
-    super.key,
-  });
+  final List sliders;
+
+  const HomePageViewSection({super.key, required this.sliders});
 
   @override
   State<HomePageViewSection> createState() => _HomePageViewSectionState();
@@ -32,11 +32,11 @@ class _HomePageViewSectionState extends State<HomePageViewSection> {
       children: [
         HomePageView(
           controller: pageController,
+          sliders: widget.sliders,
         ),
-        const SizedBox(
-          height: 8,
-        ),
+        const SizedBox(height: 8),
         CustomDotsIndicator(
+          pagesCount: widget.sliders.length,
           pageNum: pageNum,
         ),
       ],

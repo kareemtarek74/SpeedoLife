@@ -1,28 +1,45 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:speedo_life/Features/Home/Data/DataSource/home_remote_data_source.dart';
+import 'package:speedo_life/Features/Home/Data/Repos/home_repo_impl.dart';
+import 'package:speedo_life/Features/Home/Domain/Repos/home_repo.dart';
+import 'package:speedo_life/Features/Home/Domain/useCases/home_usecase.dart';
+import 'package:speedo_life/Features/Home/presentation/cubits/Home%20Cubit/home_cubit.dart';
 import 'package:speedo_life/Features/Main/presentation/cubits/buttom_navigation_cubit.dart';
+import 'package:speedo_life/core/Api/failure_handler.dart';
+import 'package:speedo_life/core/Api/http_service.dart';
+import 'package:speedo_life/core/Api/http_service_impl.dart';
 import 'package:speedo_life/core/Network/connection_cubit.dart';
 
 final sl = GetIt.instance;
 final serviceLocator = sl;
 
-Future<void> init() async {
-  // initSplash();
-  // initHome();
+BaseOptions _dioOptions() {
+  return BaseOptions(
+    baseUrl: 'http://209.250.237.58:5031/api', // Base URL
+    connectTimeout: const Duration(seconds: 50),
+    receiveTimeout: const Duration(seconds: 50),
+    sendTimeout: const Duration(seconds: 50),
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+    },
+    validateStatus: (status) {
+      return status != null && status <= 500;
+    },
+  );
+}
 
+Future<void> init() async {
   sl.registerFactory<BottomNavigationCubit>(() => BottomNavigationCubit());
 
   //! Core
-  // sl.registerLazySingleton<ApiConsumer>(() => DioConsumer(client: sl()));
-  // sl.registerLazySingleton<DioConsumer>(() => DioConsumer(client: sl()));
   sl.registerLazySingleton<ConnectionCubit>(() => ConnectionCubit());
 
   //! External
   final sharedPreferences = await SharedPreferences.getInstance();
   sl.registerLazySingleton(() => sharedPreferences);
-  // sl.registerLazySingleton(() => AppIntercepters());
-  //هادا لطباعة اللوج
   sl.registerLazySingleton(() => LogInterceptor(
       request: true,
       requestBody: true,
@@ -31,49 +48,28 @@ Future<void> init() async {
       responseHeader: true,
       error: true));
 
-  // sl.registerLazySingleton(() => Dio());
+  // تحقق من تسجيل Dio قبل تسجيله
+  if (!serviceLocator.isRegistered<Dio>()) {
+    serviceLocator.registerLazySingleton<Dio>(() => Dio(_dioOptions()));
+  }
 
-  //!################################ By Elgheny ############################
-
-  //!################################ Package ###############################
-  serviceLocator.registerLazySingleton<Dio>(() => Dio());
   //! ############################### Service ###############################
-  /* serviceLocator.registerLazySingleton<FailureHandler>(() => FailureHandler());
+  serviceLocator.registerLazySingleton<FailureHandler>(() => FailureHandler());
   serviceLocator.registerLazySingleton<HttpService>(() => HttpServiceImpl());
 
   //! ################################ Datasources #################################
 
-  serviceLocator.registerLazySingleton<DealsRemoteDatasource>(
-      () => DealsRemoteDatasourceImpl());
-  serviceLocator.registerLazySingleton<WalletRemoteDatasource>(
-      () => WalletRemoteDatasourceImpl());
-  serviceLocator.registerLazySingleton<HomeRemoteDatasource>(
-      () => HomeRemoteDatasourceImpl());
-  serviceLocator.registerLazySingleton<UpdateUserDataSource>(
-      () => UpdateUserDataSourceImpl());
-  serviceLocator.registerLazySingleton<MyFavouriteDataSource>(
-      () => MyFavouriteDataSourceImpl());
+  serviceLocator
+      .registerLazySingleton<HomeDataSource>(() => HomeDataSourceImpl());
 
   //! ################################# Repository #################################
 
-  serviceLocator.registerLazySingleton<DealsRepo>(() => DealsRepoImpl());
-  serviceLocator.registerLazySingleton<WalletRepo>(() => WalletRepoImpl());
-  serviceLocator.registerLazySingleton<HomeRepo>(() => HomeRepoImpl());
   serviceLocator
-      .registerLazySingleton<UpdateUserRepo>(() => UpdateUserRepoImpl());
-  serviceLocator.registerLazySingleton<MyFavouriteDealsRepo>(
-      () => MyFavouriteDealsRepoImpl());
+      .registerLazySingleton<HomeRepository>(() => HomeRepositoryImpl());
+
   //! ################################# Usecases #################################
-  serviceLocator.registerLazySingleton(() => DealsUsecase());
-  serviceLocator.registerLazySingleton(() => WalletUsecase());
-  serviceLocator.registerLazySingleton(() => HomeUsecase());
-  serviceLocator.registerLazySingleton(() => UpdateUserUseCase());
-  serviceLocator.registerLazySingleton(() => MyFavouriteDealsUsecase());
+  serviceLocator.registerLazySingleton(() => FetchHomeDataUseCase());
 
   //! ############################### Bloc Or Cubit ###############################
-  serviceLocator.registerFactory(() => DealsCubit());
-  serviceLocator.registerSingleton(WalletCubit());
-  serviceLocator.registerSingleton(HomeCubit());
-  serviceLocator.registerSingleton(UserCubitCubit());
-  serviceLocator.registerSingleton(FavouriteCubit()); */
+  serviceLocator.registerFactory(() => HomeCubit());
 }

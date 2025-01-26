@@ -1,18 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:speedo_life/Features/Home/presentation/widgets/section_item.dart';
 
-class SectionsGridView extends StatelessWidget {
-  const SectionsGridView({
+class SectionsHorizontalListView extends StatelessWidget {
+  const SectionsHorizontalListView({
     super.key,
-    required this.scrollDirection,
-    required this.childAspectRatio,
     this.height,
     this.style,
     required this.sections,
   });
 
-  final Axis scrollDirection;
-  final double childAspectRatio;
   final double? height;
   final TextStyle? style;
   final List sections;
@@ -20,16 +16,11 @@ class SectionsGridView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: height,
-      child: GridView.builder(
-        scrollDirection: scrollDirection,
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          childAspectRatio: childAspectRatio,
-          mainAxisSpacing: 16,
-          crossAxisSpacing: 16,
-        ),
+      height: height ?? 150,
+      child: ListView.separated(
+        scrollDirection: Axis.horizontal,
         itemCount: sections.length,
+        separatorBuilder: (context, index) => const SizedBox(width: 16),
         itemBuilder: (context, index) {
           return SectionItem(
             style: style,

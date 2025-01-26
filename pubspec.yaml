@@ -31,6 +31,8 @@ dependencies:
   bloc: ^8.1.4
   connectivity_plus: ^4.0.2
   cupertino_icons: ^1.0.8
+  dartz: ^0.10.1
+  dio: ^5.7.0
   expandable_page_view: ^1.0.17
   flutter:
     sdk: flutter

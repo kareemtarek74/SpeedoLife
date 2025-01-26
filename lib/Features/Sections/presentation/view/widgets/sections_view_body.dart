@@ -19,6 +19,7 @@ class SectionsViewBody extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: SectionsGridView(
+                  sections: const [],
                   scrollDirection: Axis.vertical,
                   childAspectRatio: 167 / 227,
                   height: MediaQuery.of(context).size.height,

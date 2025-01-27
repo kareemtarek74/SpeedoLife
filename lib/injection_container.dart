@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:speedo_life/Features/Home/Data/DataSource/home_local_data_source.dart';
 import 'package:speedo_life/Features/Home/Data/DataSource/home_remote_data_source.dart';
 import 'package:speedo_life/Features/Home/Data/Repos/home_repo_impl.dart';
 import 'package:speedo_life/Features/Home/Domain/Repos/home_repo.dart';
@@ -48,7 +49,6 @@ Future<void> init() async {
       responseHeader: true,
       error: true));
 
-  // تحقق من تسجيل Dio قبل تسجيله
   if (!serviceLocator.isRegistered<Dio>()) {
     serviceLocator.registerLazySingleton<Dio>(() => Dio(_dioOptions()));
   }
@@ -61,6 +61,8 @@ Future<void> init() async {
 
   serviceLocator
       .registerLazySingleton<HomeDataSource>(() => HomeDataSourceImpl());
+  sl.registerLazySingleton<HomeLocalDataSource>(
+      () => HomeLocalDataSourceImpl(sl()));
 
   //! ################################# Repository #################################
 

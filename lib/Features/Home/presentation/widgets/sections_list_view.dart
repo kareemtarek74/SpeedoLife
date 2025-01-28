@@ -26,6 +26,7 @@ class SectionsHorizontalListView extends StatelessWidget {
             style: style,
             name: sections[index]['name'],
             image: sections[index]['image'],
+            categoryId: sections[index]['_id'],
           );
         },
       ),

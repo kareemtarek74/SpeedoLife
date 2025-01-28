@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:speedo_life/Features/Home/presentation/widgets/sections_grid_view.dart';
-import 'package:speedo_life/Features/Sections/presentation/cubits/cubit/categories_cubit.dart';
+import 'package:speedo_life/Features/Sections/presentation/cubits/Categories%20cubit/categories_cubit.dart';
 import 'package:speedo_life/Features/Sections/presentation/view/widgets/sections_shimmer.dart';
 import 'package:speedo_life/core/utils/text_styles.dart';
 import 'package:speedo_life/core/widgets/custom_app_bar.dart';
@@ -31,6 +31,7 @@ class SectionsViewBody extends StatelessWidget {
                             .map((category) => {
                                   'name': category.name,
                                   'image': category.image,
+                                  '_id': category.id,
                                 })
                             .toList(),
                         scrollDirection: Axis.vertical,

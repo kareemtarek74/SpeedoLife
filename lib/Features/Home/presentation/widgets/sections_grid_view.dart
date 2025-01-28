@@ -18,9 +18,8 @@ class SectionsGridView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
-      padding: const EdgeInsets.all(16.0),
-      physics: const BouncingScrollPhysics(), // إضافة تمرير سلس
-      shrinkWrap: true, // يجعل الشبكة تتكيف مع حجم المحتوى
+      physics: const BouncingScrollPhysics(),
+      shrinkWrap: true,
       scrollDirection: scrollDirection,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
@@ -34,6 +33,7 @@ class SectionsGridView extends StatelessWidget {
           style: style,
           name: sections[index]['name'],
           image: sections[index]['image'],
+          categoryId: sections[index]['_id'],
         );
       },
     );

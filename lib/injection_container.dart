@@ -10,10 +10,16 @@ import 'package:speedo_life/Features/Home/presentation/cubits/Home%20Cubit/home_
 import 'package:speedo_life/Features/Main/presentation/cubits/buttom_navigation_cubit.dart';
 import 'package:speedo_life/Features/Sections/data/DataSources/categories_data_source.dart';
 import 'package:speedo_life/Features/Sections/data/DataSources/categories_local_data_source.dart';
+import 'package:speedo_life/Features/Sections/data/DataSources/products_data_source.dart';
+import 'package:speedo_life/Features/Sections/data/DataSources/products_local_data_source.dart';
 import 'package:speedo_life/Features/Sections/data/Repos/categories_repo_impl.dart';
+import 'package:speedo_life/Features/Sections/data/Repos/products_repo_impl.dart';
 import 'package:speedo_life/Features/Sections/domain/Repos/categories_repo.dart';
+import 'package:speedo_life/Features/Sections/domain/Repos/products_repo.dart';
 import 'package:speedo_life/Features/Sections/domain/usecases/categories_usecase.dart';
-import 'package:speedo_life/Features/Sections/presentation/cubits/cubit/categories_cubit.dart';
+import 'package:speedo_life/Features/Sections/domain/usecases/products_usecase.dart';
+import 'package:speedo_life/Features/Sections/presentation/cubits/Categories%20cubit/categories_cubit.dart';
+import 'package:speedo_life/Features/Sections/presentation/cubits/Products%20Cubit/products_cubit.dart';
 import 'package:speedo_life/core/Api/failure_handler.dart';
 import 'package:speedo_life/core/Api/http_service.dart';
 import 'package:speedo_life/core/Api/http_service_impl.dart';
@@ -75,6 +81,11 @@ Future<void> init() async {
   sl.registerLazySingleton<CategoriesLocalDataSource>(
       () => CategoriesLocalDataSourceImpl(sl()));
 
+  serviceLocator.registerLazySingleton<ProductsRemoteDataSource>(
+      () => ProductsRemoteDataSourceImpl());
+  sl.registerLazySingleton<ProductsLocalDataSource>(
+      () => ProductsLocalDataSourceImpl(sl()));
+
   //! ################################# Repository #################################
 
   serviceLocator
@@ -83,12 +94,18 @@ Future<void> init() async {
   serviceLocator.registerLazySingleton<CategoriesRepository>(
       () => CategoriesRepositoryImpl());
 
+  serviceLocator.registerLazySingleton<ProductsRepository>(
+      () => ProductsRepositoryImpl());
+
   //! ################################# Usecases #################################
   serviceLocator.registerLazySingleton(() => FetchHomeDataUseCase());
 
   serviceLocator.registerLazySingleton(() => FetchCategoriesUseCase());
 
+  serviceLocator.registerLazySingleton(() => FetchProductsUseCase());
+
   //! ############################### Bloc Or Cubit ###############################
   serviceLocator.registerFactory(() => HomeCubit());
   serviceLocator.registerFactory(() => CategoriesCubit());
+  serviceLocator.registerFactory(() => ProductsCubit());
 }

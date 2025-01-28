@@ -3,10 +3,22 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:speedo_life/Features/Sections/presentation/view/product_details_view.dart';
 import 'package:speedo_life/core/utils/app_images.dart';
 import 'package:speedo_life/core/utils/text_styles.dart';
+import 'package:speedo_life/core/widgets/cached_images.dart';
 import 'package:speedo_life/core/widgets/custom_cart_button.dart';
 
 class ProductsGridViewItem extends StatelessWidget {
-  const ProductsGridViewItem({super.key});
+  final String name;
+  final int price;
+  final String imageUrl;
+  final int status;
+
+  const ProductsGridViewItem({
+    super.key,
+    required this.name,
+    required this.price,
+    required this.imageUrl,
+    required this.status,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -18,8 +30,9 @@ class ProductsGridViewItem extends StatelessWidget {
         decoration: ShapeDecoration(
           color: Colors.white,
           shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
-              side: const BorderSide(width: 1, color: Color(0xFFEFEEEE))),
+            borderRadius: BorderRadius.circular(12),
+            side: const BorderSide(width: 1, color: Color(0xFFEFEEEE)),
+          ),
         ),
         child: Stack(
           children: [
@@ -27,34 +40,38 @@ class ProductsGridViewItem extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.only(left: 12, right: 12, top: 12),
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Flexible(child: Image.asset(Assets.imagesProduct)),
-                    const SizedBox(
-                      height: 8,
-                    ),
+                    SizedBox(
+                        height: 170,
+                        child: ImageWithCache(
+                          fit: BoxFit.scaleDown,
+                          imageUrl: imageUrl,
+                        )),
+                    const SizedBox(height: 8),
                     Text(
-                      'سيرافي لوشن ترطيب للبشرة الجافة مع حمض الهيالورو ...',
+                      name,
                       style: Styles.styleSemiBold12(context)
                           .copyWith(color: const Color(0xff404040)),
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                     ),
-                    const SizedBox(
-                      height: 4,
-                    ),
                     Row(
                       children: [
                         Text(
-                          '4,000 د',
+                          '$price دينار',
                           style: Styles.styleBold16(context),
                         ),
                       ],
                     ),
                     const SizedBox(
-                      height: 12,
+                      height: 4,
                     ),
                     const CustomCartButton(
                       padding: EdgeInsets.symmetric(vertical: 11),
+                    ),
+                    const SizedBox(
+                      height: 12,
                     )
                   ],
                 ),
@@ -64,10 +81,9 @@ class ProductsGridViewItem extends StatelessWidget {
               top: 0,
               right: 0,
               child: IconButton(
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.favorite_outline,
-                  )),
+                onPressed: () {},
+                icon: const Icon(Icons.favorite_outline),
+              ),
             ),
             Positioned(
               top: 16,

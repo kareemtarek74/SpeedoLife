@@ -19,7 +19,17 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
       return MaterialPageRoute(builder: (context) => const SectionsView());
     case SectionProductsPageView.routeName:
       return MaterialPageRoute(
-          builder: (context) => const SectionProductsPageView());
+          settings: settings,
+          builder: (context) {
+            final args = ModalRoute.of(context)!.settings.arguments
+                as Map<String, dynamic>;
+            final categoryId = args['categoryId']!;
+            final categoryName = args['categoryName']!;
+            return SectionProductsPageView(
+              categoryId: categoryId,
+              categoryName: categoryName,
+            );
+          });
     case ProductDetailsView.routeName:
       return MaterialPageRoute(
           builder: (context) => const ProductDetailsView());

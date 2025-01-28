@@ -5,11 +5,12 @@ import 'package:shimmer/shimmer.dart';
 class ImageWithCache extends StatelessWidget {
   final String imageUrl;
   final double aspectRatio;
-
+  final BoxFit? fit;
   const ImageWithCache({
     super.key,
     required this.imageUrl,
     this.aspectRatio = 1.0,
+    this.fit = BoxFit.cover,
   });
 
   @override
@@ -18,7 +19,7 @@ class ImageWithCache extends StatelessWidget {
       aspectRatio: aspectRatio,
       child: CachedNetworkImage(
         imageUrl: imageUrl,
-        fit: BoxFit.cover,
+        fit: fit,
         placeholder: (context, url) => Shimmer.fromColors(
           baseColor: Colors.grey[300]!,
           highlightColor: Colors.grey[100]!,

@@ -163,7 +163,9 @@ class ProductDetailsViewBody extends StatelessWidget {
         const SliverFillRemaining(
             child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 16),
-          child: ProductsGridView(),
+          child: ProductsGridView(
+            products: [],
+          ),
         ))
       ],
     );

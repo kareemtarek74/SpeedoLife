@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:speedo_life/Features/Sections/presentation/cubits/Products%20Cubit/products_cubit.dart';
 import 'package:speedo_life/Features/Sections/presentation/view/widgets/products_grid_view.dart';
-import 'package:speedo_life/Features/Sections/presentation/view/widgets/section_products_sections_list_view.dart';
-import 'package:speedo_life/core/utils/app_images.dart';
+import 'package:speedo_life/Features/Sections/presentation/view/widgets/products_shimmer.dart';
 import 'package:speedo_life/core/widgets/custom_app_bar.dart';
 
 class SectionProductsPageViewBody extends StatelessWidget {
-  const SectionProductsPageViewBody({super.key});
+  final String categoryId;
+  final String categoryName;
+
+  const SectionProductsPageViewBody({
+    super.key,
+    required this.categoryId,
+    required this.categoryName,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -15,24 +22,29 @@ class SectionProductsPageViewBody extends StatelessWidget {
         SliverToBoxAdapter(
           child: Column(
             children: [
-              const CustomAppBar(
-                title: 'العناية بالبشرة',
-              ),
-              Row(
-                children: [
-                  const Expanded(child: SectionProductsSectionsListView()),
-                  SvgPicture.asset(Assets.imagesArrowDown)
-                ],
-              )
+              CustomAppBar(title: categoryName),
             ],
           ),
         ),
-        const SliverFillRemaining(
-          child: Padding(
-            padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-            child: ProductsGridView(),
+        SliverFillRemaining(
+          child: BlocBuilder<ProductsCubit, ProductsState>(
+            builder: (context, state) {
+              if (state is ProductsLoading) {
+                return const ProductsShimmer();
+              } else if (state is ProductsLoaded) {
+                return ProductsGridView(
+                  products: state.products,
+                );
+              } else if (state is ProductsError) {
+                return Center(
+                  child: Text(state.message),
+                );
+              } else {
+                return const SizedBox();
+              }
+            },
           ),
-        )
+        ),
       ],
     );
   }

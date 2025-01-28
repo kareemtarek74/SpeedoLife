@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:overlay_support/overlay_support.dart';
-import 'package:speedo_life/Features/Home/presentation/cubits/Home%20Cubit/home_cubit.dart';
 import 'package:speedo_life/Features/Main/presentation/cubits/buttom_navigation_cubit.dart';
 import 'package:speedo_life/Features/Main/presentation/views/main_view.dart';
 import 'package:speedo_life/core/Network/connection_cubit.dart';
@@ -25,9 +24,6 @@ class _SpeedoLifeAppState extends State<SpeedoLifeApp> {
     return OverlaySupport.global(
       child: MultiBlocProvider(
         providers: [
-          BlocProvider<HomeCubit>(
-            create: (context) => di.sl<HomeCubit>()..loadHomeData(),
-          ),
           BlocProvider<ConnectionCubit>(
             create: (context) => di.sl<ConnectionCubit>(),
           ),

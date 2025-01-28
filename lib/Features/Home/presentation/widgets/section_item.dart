@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:speedo_life/Features/Sections/presentation/view/section_products_page_view.dart';
+import 'package:speedo_life/core/widgets/cached_images.dart';
 
 class SectionItem extends StatelessWidget {
   const SectionItem({
@@ -34,18 +35,9 @@ class SectionItem extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: SizedBox(
-                width: 120,
-                height: 140,
-                child: Image.network(
-                  image,
-                  fit: BoxFit.cover,
-                  errorBuilder: (context, error, stackTrace) => const Icon(
-                    Icons.broken_image,
-                    size: 40,
-                    color: Colors.grey,
-                  ),
-                ),
-              ),
+                  width: 120,
+                  height: 140,
+                  child: ImageWithCache(imageUrl: image)),
             ),
             const SizedBox(
               height: 8,

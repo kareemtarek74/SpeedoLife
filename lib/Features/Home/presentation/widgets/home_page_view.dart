@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:speedo_life/core/widgets/cached_images.dart';
 
 class HomePageView extends StatelessWidget {
   final PageController controller;
@@ -21,10 +22,11 @@ class HomePageView extends StatelessWidget {
           return Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12),
-              image: DecorationImage(
-                image: NetworkImage(sliders[index]['image']),
-                fit: BoxFit.cover,
-              ),
+            ),
+            clipBehavior: Clip.antiAlias,
+            child: ImageWithCache(
+              imageUrl: sliders[index]['image'],
+              aspectRatio: 343 / 156,
             ),
           );
         },

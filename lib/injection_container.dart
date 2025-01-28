@@ -8,6 +8,12 @@ import 'package:speedo_life/Features/Home/Domain/Repos/home_repo.dart';
 import 'package:speedo_life/Features/Home/Domain/useCases/home_usecase.dart';
 import 'package:speedo_life/Features/Home/presentation/cubits/Home%20Cubit/home_cubit.dart';
 import 'package:speedo_life/Features/Main/presentation/cubits/buttom_navigation_cubit.dart';
+import 'package:speedo_life/Features/Sections/data/DataSources/categories_data_source.dart';
+import 'package:speedo_life/Features/Sections/data/DataSources/categories_local_data_source.dart';
+import 'package:speedo_life/Features/Sections/data/Repos/categories_repo_impl.dart';
+import 'package:speedo_life/Features/Sections/domain/Repos/categories_repo.dart';
+import 'package:speedo_life/Features/Sections/domain/usecases/categories_usecase.dart';
+import 'package:speedo_life/Features/Sections/presentation/cubits/cubit/categories_cubit.dart';
 import 'package:speedo_life/core/Api/failure_handler.dart';
 import 'package:speedo_life/core/Api/http_service.dart';
 import 'package:speedo_life/core/Api/http_service_impl.dart';
@@ -64,14 +70,25 @@ Future<void> init() async {
   sl.registerLazySingleton<HomeLocalDataSource>(
       () => HomeLocalDataSourceImpl(sl()));
 
+  serviceLocator.registerLazySingleton<CategoriesRemoteDataSource>(
+      () => CategoriesRemoteDataSourceImpl());
+  sl.registerLazySingleton<CategoriesLocalDataSource>(
+      () => CategoriesLocalDataSourceImpl(sl()));
+
   //! ################################# Repository #################################
 
   serviceLocator
       .registerLazySingleton<HomeRepository>(() => HomeRepositoryImpl());
 
+  serviceLocator.registerLazySingleton<CategoriesRepository>(
+      () => CategoriesRepositoryImpl());
+
   //! ################################# Usecases #################################
   serviceLocator.registerLazySingleton(() => FetchHomeDataUseCase());
 
+  serviceLocator.registerLazySingleton(() => FetchCategoriesUseCase());
+
   //! ############################### Bloc Or Cubit ###############################
   serviceLocator.registerFactory(() => HomeCubit());
+  serviceLocator.registerFactory(() => CategoriesCubit());
 }

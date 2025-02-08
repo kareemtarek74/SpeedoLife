@@ -4,10 +4,11 @@ import 'package:speedo_life/Features/Sections/presentation/view/widgets/products
 
 class ProductsGridView extends StatelessWidget {
   final List<Product> products;
-
+  final bool? isTrend;
   const ProductsGridView({
     super.key,
     required this.products,
+    this.isTrend = false,
   });
 
   @override
@@ -27,10 +28,13 @@ class ProductsGridView extends StatelessWidget {
         itemBuilder: (context, index) {
           final product = products[index];
           return ProductsGridViewItem(
+            isTrend: isTrend,
+            product: product,
             name: product.name,
             price: product.finalPrice,
             imageUrl: product.image.toString(),
             status: product.status,
+            products: products,
           );
         },
       ),

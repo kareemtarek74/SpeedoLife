@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:speedo_life/Features/Sections/data/model/products_model.dart';
 import 'package:speedo_life/Features/Sections/presentation/view/product_details_view.dart';
 import 'package:speedo_life/core/utils/app_images.dart';
 import 'package:speedo_life/core/utils/text_styles.dart';
@@ -8,9 +9,13 @@ import 'package:speedo_life/core/widgets/custom_cart_button.dart';
 
 class ProductsGridViewItem extends StatelessWidget {
   final String name;
+  final Color? color;
   final int price;
   final String imageUrl;
   final int status;
+  final Product product;
+  final List<Product> products;
+  final bool? isTrend;
 
   const ProductsGridViewItem({
     super.key,
@@ -18,17 +23,29 @@ class ProductsGridViewItem extends StatelessWidget {
     required this.price,
     required this.imageUrl,
     required this.status,
+    required this.product,
+    required this.products,
+    this.color = Colors.white,
+    this.isTrend = false,
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, ProductDetailsView.routeName);
+        Navigator.pushNamed(
+          context,
+          ProductDetailsView.routeName,
+          arguments: {
+            'product': product,
+            'products': products,
+            'isTrend': isTrend,
+          },
+        );
       },
       child: Container(
         decoration: ShapeDecoration(
-          color: Colors.white,
+          color: color,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
             side: const BorderSide(width: 1, color: Color(0xFFEFEEEE)),
@@ -56,13 +73,16 @@ class ProductsGridViewItem extends StatelessWidget {
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                     ),
-                    Row(
-                      children: [
-                        Text(
-                          '$price دينار',
-                          style: Styles.styleBold16(context),
-                        ),
-                      ],
+                    Padding(
+                      padding: const EdgeInsets.only(right: 2),
+                      child: Row(
+                        children: [
+                          Text(
+                            '$price دينار',
+                            style: Styles.styleBold16(context),
+                          ),
+                        ],
+                      ),
                     ),
                     const SizedBox(
                       height: 4,
@@ -88,7 +108,9 @@ class ProductsGridViewItem extends StatelessWidget {
             Positioned(
               top: 16,
               left: 16,
-              child: SvgPicture.asset(Assets.imagesTag),
+              child: isTrend == false
+                  ? SvgPicture.asset(Assets.imagesTag)
+                  : SvgPicture.asset(Assets.imagesTrend),
             ),
           ],
         ),

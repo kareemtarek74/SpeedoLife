@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:speedo_life/Features/Orders/presentation/widgets/filter_list_view.dart';
-import 'package:speedo_life/Features/Sections/presentation/view/widgets/colored_filter_list.dart';
+import 'package:speedo_life/Features/Sections/data/model/products_model.dart';
 import 'package:speedo_life/Features/Sections/presentation/view/widgets/product_image.dart';
 import 'package:speedo_life/Features/Sections/presentation/view/widgets/product_text_span.dart';
 import 'package:speedo_life/Features/Sections/presentation/view/widgets/products_grid_view.dart';
@@ -9,26 +8,39 @@ import 'package:speedo_life/core/utils/text_styles.dart';
 import 'package:speedo_life/core/widgets/custom_app_bar.dart';
 
 class ProductDetailsViewBody extends StatelessWidget {
-  const ProductDetailsViewBody({super.key});
-
+  const ProductDetailsViewBody(
+      {super.key,
+      required this.product,
+      required this.products,
+      required this.isTrend});
+  final Product product;
+  final List<Product> products;
+  final bool isTrend;
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: [
         SliverToBoxAdapter(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const CustomAppBar(
                 title: 'تفاصيل المنتج',
               ),
-              const ProductImage(),
+              ProductImage(
+                image: product.image.toString(),
+              ),
               Row(
                 children: [
                   const SizedBox(
                     width: 16,
                   ),
                   Text(
-                    '10,000 د',
+                    product.finalPrice < 25000
+                        ? (product.finalPrice + 500).toString()
+                        : product.finalPrice < 80000
+                            ? (product.finalPrice + 1000).toString()
+                            : (product.finalPrice + 5000).toString(),
                     style: Styles.styleBold24(context).copyWith(
                         color: const Color(0xffAAAAAA),
                         decoration: TextDecoration.lineThrough),
@@ -37,7 +49,7 @@ class ProductDetailsViewBody extends StatelessWidget {
                     width: 8,
                   ),
                   Text(
-                    '8,000 د',
+                    product.finalPrice.toString(),
                     style: Styles.styleBold24(context)
                         .copyWith(color: AppColors.primaryColor),
                   ),
@@ -49,22 +61,25 @@ class ProductDetailsViewBody extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'سيرافي لوشن ترطيب للبشرة الجافة مع حمض الهيالورونيك و السيراميد',
+                      product.name,
                       style: Styles.styleBold20(context),
                     ),
                     const SizedBox(
                       height: 8,
                     ),
-                    const ProductTextSpan(),
+                    ProductTextSpan(
+                      text: product.description,
+                    ),
                   ],
                 ),
               ),
               const SizedBox(
                 height: 16,
               ),
-              Container(
+              /*   Container(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 width: double.infinity,
                 color: AppColors.secondaryColor,
@@ -135,7 +150,7 @@ class ProductDetailsViewBody extends StatelessWidget {
                     )
                   ],
                 ),
-              ),
+              ), */
               const SizedBox(
                 height: 16,
               ),
@@ -160,13 +175,19 @@ class ProductDetailsViewBody extends StatelessWidget {
             ],
           ),
         ),
-        const SliverFillRemaining(
-            child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16),
-          child: ProductsGridView(
-            products: [],
+        SliverToBoxAdapter(
+          child: Container(
+              color: AppColors.secondaryColor,
+              child: ProductsGridView(
+                products: products,
+                isTrend: isTrend,
+              )),
+        ),
+        const SliverToBoxAdapter(
+          child: SizedBox(
+            height: 32,
           ),
-        ))
+        )
       ],
     );
   }

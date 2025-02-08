@@ -8,6 +8,7 @@ import 'package:speedo_life/Features/Home/presentation/widgets/sections_header.d
 import 'package:speedo_life/Features/Home/presentation/widgets/sections_list_view.dart';
 import 'package:speedo_life/Features/Home/presentation/widgets/shimmer_categories.dart';
 import 'package:speedo_life/Features/Home/presentation/widgets/shimmer_slider.dart';
+import 'package:speedo_life/Features/Sections/data/model/products_model.dart';
 import 'package:speedo_life/core/utils/text_styles.dart';
 
 class HomeViewBody extends StatelessWidget {
@@ -55,7 +56,11 @@ class HomeViewBody extends StatelessWidget {
                     const SizedBox(
                       height: 8,
                     ),
-                    const SectionsHeader(),
+                    const SectionsHeader(
+                      text: 'الأقسام',
+                      products: [],
+                      isTrend: true,
+                    ),
                     const SizedBox(height: 16),
                     BlocBuilder<HomeCubit, HomeState>(
                       builder: (context, state) {
@@ -74,6 +79,86 @@ class HomeViewBody extends StatelessWidget {
                           return const SizedBox();
                         }
                       },
+                    ),
+                    const SizedBox(
+                      height: 24,
+                    ),
+                    BlocBuilder<HomeCubit, HomeState>(
+                      builder: (context, state) {
+                        if (state is HomeLoading) {
+                          return const ShimmerCategories();
+                        } else if (state is HomeLoaded) {
+                          List sections = state.data['bestSeller'];
+                          List<Product> products = sections
+                              .map((json) => Product.fromJson(json))
+                              .toList();
+                          return Column(
+                            children: [
+                              SectionsHeader(
+                                isCategories: false,
+                                text: 'الأكثر طلبا',
+                                products: products,
+                                isTrend: true,
+                              ),
+                              const SizedBox(height: 16),
+                              SectionsHorizontalListView(
+                                isProduct: true,
+                                height: MediaQuery.of(context).size.height * .4,
+                                style: Styles.styleSemiBold12(context).copyWith(
+                                    color: const Color(0xff181818),
+                                    fontSize: 14),
+                                sections: state.data['bestSeller'],
+                              ),
+                            ],
+                          );
+                        } else if (state is HomeError) {
+                          return Center(child: Text(state.message));
+                        } else {
+                          return const SizedBox();
+                        }
+                      },
+                    ),
+                    const SizedBox(
+                      height: 24,
+                    ),
+                    BlocBuilder<HomeCubit, HomeState>(
+                      builder: (context, state) {
+                        if (state is HomeLoading) {
+                          return const ShimmerCategories();
+                        } else if (state is HomeLoaded) {
+                          List sections = state.data['newProducts'];
+                          List<Product> products = sections
+                              .map((json) => Product.fromJson(json))
+                              .toList();
+                          return Column(
+                            children: [
+                              SectionsHeader(
+                                isCategories: false,
+                                text: 'وصل حديثا',
+                                products: products,
+                                isTrend: false,
+                              ),
+                              const SizedBox(height: 16),
+                              SectionsHorizontalListView(
+                                isTrend: false,
+                                isProduct: true,
+                                height: MediaQuery.of(context).size.height * .4,
+                                style: Styles.styleSemiBold12(context).copyWith(
+                                    color: const Color(0xff181818),
+                                    fontSize: 14),
+                                sections: state.data['newProducts'],
+                              ),
+                            ],
+                          );
+                        } else if (state is HomeError) {
+                          return Center(child: Text(state.message));
+                        } else {
+                          return const SizedBox();
+                        }
+                      },
+                    ),
+                    const SizedBox(
+                      height: 24,
                     ),
                   ],
                 ),

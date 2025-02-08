@@ -1,26 +1,31 @@
 // ignore_for_file: prefer_single_quotes
 class Assets {
   Assets._();
-  
+
   /// Assets for imagesActiveImagesCart
   /// assets/images/activeImages/cart.svg
-  static const String imagesActiveImagesCart = "assets/images/activeImages/cart.svg";
+  static const String imagesActiveImagesCart =
+      "assets/images/activeImages/cart.svg";
 
   /// Assets for imagesActiveImagesFavourite
   /// assets/images/activeImages/favourite.svg
-  static const String imagesActiveImagesFavourite = "assets/images/activeImages/favourite.svg";
+  static const String imagesActiveImagesFavourite =
+      "assets/images/activeImages/favourite.svg";
 
   /// Assets for imagesActiveImagesHome
   /// assets/images/activeImages/home.svg
-  static const String imagesActiveImagesHome = "assets/images/activeImages/home.svg";
+  static const String imagesActiveImagesHome =
+      "assets/images/activeImages/home.svg";
 
   /// Assets for imagesActiveImagesSale
   /// assets/images/activeImages/sale.svg
-  static const String imagesActiveImagesSale = "assets/images/activeImages/sale.svg";
+  static const String imagesActiveImagesSale =
+      "assets/images/activeImages/sale.svg";
 
   /// Assets for imagesActiveImagesUser
   /// assets/images/activeImages/user.svg
-  static const String imagesActiveImagesUser = "assets/images/activeImages/user.svg";
+  static const String imagesActiveImagesUser =
+      "assets/images/activeImages/user.svg";
 
   /// Assets for imagesArrow
   /// assets/images/arrow.svg
@@ -48,23 +53,28 @@ class Assets {
 
   /// Assets for imagesInActiveImagesCart
   /// assets/images/inActiveImages/cart.svg
-  static const String imagesInActiveImagesCart = "assets/images/inActiveImages/cart.svg";
+  static const String imagesInActiveImagesCart =
+      "assets/images/inActiveImages/cart.svg";
 
   /// Assets for imagesInActiveImagesFavourite
   /// assets/images/inActiveImages/favourite.svg
-  static const String imagesInActiveImagesFavourite = "assets/images/inActiveImages/favourite.svg";
+  static const String imagesInActiveImagesFavourite =
+      "assets/images/inActiveImages/favourite.svg";
 
   /// Assets for imagesInActiveImagesHome
   /// assets/images/inActiveImages/Home.svg
-  static const String imagesInActiveImagesHome = "assets/images/inActiveImages/Home.svg";
+  static const String imagesInActiveImagesHome =
+      "assets/images/inActiveImages/Home.svg";
 
   /// Assets for imagesInActiveImagesSale
   /// assets/images/inActiveImages/sale.svg
-  static const String imagesInActiveImagesSale = "assets/images/inActiveImages/sale.svg";
+  static const String imagesInActiveImagesSale =
+      "assets/images/inActiveImages/sale.svg";
 
   /// Assets for imagesInActiveImagesUser
   /// assets/images/inActiveImages/user.svg
-  static const String imagesInActiveImagesUser = "assets/images/inActiveImages/user.svg";
+  static const String imagesInActiveImagesUser =
+      "assets/images/inActiveImages/user.svg";
 
   /// Assets for imagesInvoice
   /// assets/images/invoice.svg
@@ -80,7 +90,8 @@ class Assets {
 
   /// Assets for imagesNotificationIcon
   /// assets/images/notification_icon.svg
-  static const String imagesNotificationIcon = "assets/images/notification_icon.svg";
+  static const String imagesNotificationIcon =
+      "assets/images/notification_icon.svg";
 
   /// Assets for imagesPassword
   /// assets/images/password.svg
@@ -106,6 +117,10 @@ class Assets {
   /// assets/images/Tag.svg
   static const String imagesTag = "assets/images/Tag.svg";
 
+  /// Assets for imagesTrend tag
+  /// assets/images/Trend tag.svg
+  static const String imagesTrend = "assets/images/Trend tag.svg";
+
   /// Assets for imagesVector
   /// assets/images/Vector.svg
   static const String imagesVector = "assets/images/Vector.svg";
@@ -114,4 +129,3 @@ class Assets {
   /// assets/images/watchs.png
   static const String imagesWatchs = "assets/images/watchs.png";
 }
-

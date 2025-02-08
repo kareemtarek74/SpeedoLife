@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:speedo_life/Features/Auth/presentation/view/widgets/sign_in_view.dart';
 import 'package:speedo_life/Features/Home/presentation/widgets/best_selling_products_view.dart';
 import 'package:speedo_life/Features/Main/presentation/views/main_view.dart';
+import 'package:speedo_life/Features/Offers/Presentation/views/offers_produts_view.dart';
 import 'package:speedo_life/Features/Sections/data/model/products_model.dart';
 import 'package:speedo_life/Features/Sections/presentation/view/product_details_view.dart';
 import 'package:speedo_life/Features/Sections/presentation/view/section_products_page_view.dart';
@@ -57,6 +58,19 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
             return BestSellingProductsView(
               isTrend: isTrend,
               products: products,
+            );
+          });
+    case OffersProdutsView.routeName:
+      return MaterialPageRoute(
+          settings: settings,
+          builder: (context) {
+            final args = settings.arguments as Map<String, dynamic>;
+            final String name = args['name'] as String;
+            final String offerId = args['offerId'] as String;
+
+            return OffersProdutsView(
+              name: name,
+              offerId: offerId,
             );
           });
     default:

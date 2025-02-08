@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:speedo_life/Features/Offers/Data/model/sub_categories_model.dart';
 import 'package:speedo_life/core/utils/text_styles.dart';
 
-class SectionProductsSectionsListView extends StatefulWidget {
-  const SectionProductsSectionsListView({super.key});
+class SubCategoriesListView extends StatefulWidget {
+  const SubCategoriesListView({super.key, required this.categories});
+  final List<SubCategoriesModel> categories;
 
   @override
-  SectionProductsSectionsListViewState createState() =>
-      SectionProductsSectionsListViewState();
+  SubCategoriesListViewState createState() => SubCategoriesListViewState();
 }
 
-class SectionProductsSectionsListViewState
-    extends State<SectionProductsSectionsListView> {
+class SubCategoriesListViewState extends State<SubCategoriesListView> {
   int selectedIndex = 0;
-
-  final List<String> filters = ["غسول", "مرهم", "سيرم", "كريم", "لوشن"];
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +21,7 @@ class SectionProductsSectionsListViewState
         height: 40,
         child: ListView.builder(
           scrollDirection: Axis.horizontal,
-          itemCount: filters.length,
+          itemCount: widget.categories.length,
           itemBuilder: (context, index) {
             bool isActive = selectedIndex == index;
             return GestureDetector(
@@ -45,7 +43,7 @@ class SectionProductsSectionsListViewState
                         isActive ? Colors.transparent : const Color(0xFFDBDBDB),
                   ),
                 ),
-                child: Text(filters[index],
+                child: Text(widget.categories[index].name,
                     style: Styles.styleBold12(context).copyWith(
                       color: isActive ? Colors.white : const Color(0xFF808080),
                     )),

@@ -9,30 +9,32 @@ class OffersListView extends StatelessWidget {
     required this.offers,
   });
   final List<Offer> offers;
+
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: MediaQuery.sizeOf(context).height,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: ListView.separated(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          scrollDirection: Axis.vertical,
-          itemCount: offers.length,
-          separatorBuilder: (context, index) => const SizedBox(height: 16),
-          itemBuilder: (context, index) {
-            return GestureDetector(
-                onTap: () {
-                  Navigator.pushNamed(context, OffersProdutsView.routeName,
-                      arguments: {
-                        'name': offers[index].name ?? '',
-                        'offerId': offers[index].id
-                      });
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: Column(
+        children: List.generate(offers.length, (index) {
+          return GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(
+                context,
+                OffersProdutsView.routeName,
+                arguments: {
+                  'name': offers[index].name ?? '',
+                  'offerId': offers[index].id,
                 },
-                child: OffersListViewItem(offer: offers[index]));
-          },
-        ),
+              );
+            },
+            child: Column(
+              children: [
+                OffersListViewItem(offer: offers[index]),
+                if (index < offers.length - 1) const SizedBox(height: 16),
+              ],
+            ),
+          );
+        }),
       ),
     );
   }

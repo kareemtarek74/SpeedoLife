@@ -35,6 +35,7 @@ class ProductsGridView extends StatelessWidget {
             imageUrl: product.image.toString(),
             status: product.status,
             products: products,
+            isOffer: product.offer != null,
           );
         },
       ),

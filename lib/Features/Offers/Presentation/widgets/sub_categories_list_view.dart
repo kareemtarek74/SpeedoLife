@@ -3,15 +3,32 @@ import 'package:speedo_life/Features/Offers/Data/model/sub_categories_model.dart
 import 'package:speedo_life/core/utils/text_styles.dart';
 
 class SubCategoriesListView extends StatefulWidget {
-  const SubCategoriesListView({super.key, required this.categories});
+  const SubCategoriesListView({
+    super.key,
+    required this.categories,
+    required this.onCategorySelected,
+    this.selectedCategoryId,
+  });
+
   final List<SubCategoriesModel> categories;
+  final Function(String categoryId) onCategorySelected;
+  final String? selectedCategoryId;
 
   @override
   SubCategoriesListViewState createState() => SubCategoriesListViewState();
 }
 
 class SubCategoriesListViewState extends State<SubCategoriesListView> {
-  int selectedIndex = 0;
+  late int selectedIndex;
+
+  @override
+  void initState() {
+    super.initState();
+    selectedIndex = widget.categories.indexWhere(
+      (category) => category.id == widget.selectedCategoryId,
+    );
+    if (selectedIndex == -1) selectedIndex = 0;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +46,8 @@ class SubCategoriesListViewState extends State<SubCategoriesListView> {
                 setState(() {
                   selectedIndex = index;
                 });
+
+                widget.onCategorySelected(widget.categories[index].id);
               },
               child: AnimatedContainer(
                 duration: const Duration(milliseconds: 200),
@@ -43,10 +62,12 @@ class SubCategoriesListViewState extends State<SubCategoriesListView> {
                         isActive ? Colors.transparent : const Color(0xFFDBDBDB),
                   ),
                 ),
-                child: Text(widget.categories[index].name,
-                    style: Styles.styleBold12(context).copyWith(
-                      color: isActive ? Colors.white : const Color(0xFF808080),
-                    )),
+                child: Text(
+                  widget.categories[index].name,
+                  style: Styles.styleBold12(context).copyWith(
+                    color: isActive ? Colors.white : const Color(0xFF808080),
+                  ),
+                ),
               ),
             );
           },

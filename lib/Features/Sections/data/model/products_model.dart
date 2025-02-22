@@ -6,11 +6,13 @@ class Product {
   final int finalPrice;
   final int balance;
   final int status;
+  final String? offer;
 
   Product({
     required this.id,
     required this.name,
     this.image,
+    this.offer,
     required this.description,
     required this.finalPrice,
     required this.balance,
@@ -26,6 +28,7 @@ class Product {
       finalPrice: (json['finalPrice'] as int?) ?? 0,
       balance: (json['balance'] as int?) ?? 0,
       status: (json['status'] as int?) ?? 0,
+      offer: json['offer'] as String?,
     );
   }
 
@@ -38,6 +41,7 @@ class Product {
       'finalPrice': finalPrice,
       'balance': balance,
       'status': status,
+      'offer': offer,
     };
   }
 }

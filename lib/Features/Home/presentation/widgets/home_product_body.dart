@@ -79,7 +79,7 @@ class HomeProductBody extends StatelessWidget {
           top: 12,
           left: 16,
           child: isTrend == true
-              ? SvgPicture.asset(Assets.imagesTrend)
+              ? SvgPicture.asset(Assets.imagesTrendtag)
               : SvgPicture.asset(Assets.imagesTag),
         ),
       ],

@@ -10,14 +10,19 @@ import 'package:speedo_life/Features/Home/presentation/cubits/Home%20Cubit/home_
 import 'package:speedo_life/Features/Main/presentation/cubits/buttom_navigation_cubit.dart';
 import 'package:speedo_life/Features/Offers/Data/datasources/offer_categories_local_data_source.dart';
 import 'package:speedo_life/Features/Offers/Data/datasources/offer_categories_remote_datasource.dart';
+import 'package:speedo_life/Features/Offers/Data/datasources/offer_products_remote_datasource.dart';
 import 'package:speedo_life/Features/Offers/Data/datasources/offers_local_datasource.dart';
 import 'package:speedo_life/Features/Offers/Data/datasources/offers_remote_datasouce.dart';
 import 'package:speedo_life/Features/Offers/Data/repos/offer_categories_repo_impl.dart';
+import 'package:speedo_life/Features/Offers/Data/repos/offer_products_repo_impl.dart';
 import 'package:speedo_life/Features/Offers/Data/repos/offers_repo_impl.dart';
 import 'package:speedo_life/Features/Offers/Domain/repos/offer_categories_repo.dart';
+import 'package:speedo_life/Features/Offers/Domain/repos/offer_products_repo.dart';
 import 'package:speedo_life/Features/Offers/Domain/repos/offers_repo.dart';
 import 'package:speedo_life/Features/Offers/Domain/usecases/offer_categories_usecase.dart';
+import 'package:speedo_life/Features/Offers/Domain/usecases/offer_products_usecase.dart';
 import 'package:speedo_life/Features/Offers/Domain/usecases/offers_usecase.dart';
+import 'package:speedo_life/Features/Offers/Presentation/cubits/Offer%20Products/offer_products_cubit.dart';
 import 'package:speedo_life/Features/Offers/Presentation/cubits/Offer%20categories%20cubit/offer_categories_cubit.dart';
 import 'package:speedo_life/Features/Offers/Presentation/cubits/Offers%20Cubit/offers_cubit.dart';
 import 'package:speedo_life/Features/Sections/data/DataSources/categories_data_source.dart';
@@ -106,6 +111,9 @@ Future<void> init() async {
   sl.registerLazySingleton<OfferCategoriesLocalDataSource>(
       () => OfferCategoriesLocalDataSourceImpl(sl()));
 
+  sl.registerLazySingleton<OfferProductsRemoteDatasource>(
+      () => OfferProductsRemoteDataSourceImpl());
+
   //! ################################# Repository #################################
 
   serviceLocator
@@ -121,6 +129,9 @@ Future<void> init() async {
   serviceLocator.registerLazySingleton<OfferCategoriesRepo>(
       () => OfferCategoriesRepositoryImpl());
 
+  serviceLocator
+      .registerLazySingleton<OfferProductsRepo>(() => OfferProductsRepoImpl());
+
   //! ################################# Usecases #################################
   serviceLocator.registerLazySingleton(() => FetchHomeDataUseCase());
 
@@ -130,10 +141,13 @@ Future<void> init() async {
   serviceLocator.registerLazySingleton(() => FetchOffersUseCase());
   serviceLocator.registerLazySingleton(() => FetchOfferCategoriesUseCase());
 
+  serviceLocator.registerLazySingleton(() => FetchOfferProductsUseCase());
+
   //! ############################### Bloc Or Cubit ###############################
   serviceLocator.registerFactory(() => HomeCubit());
   serviceLocator.registerFactory(() => CategoriesCubit());
   serviceLocator.registerFactory(() => ProductsCubit());
   serviceLocator.registerFactory(() => OffersCubit());
   serviceLocator.registerFactory(() => OfferCategoriesCubit());
+  serviceLocator.registerFactory(() => OfferProductsCubit());
 }

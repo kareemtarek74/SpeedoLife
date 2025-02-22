@@ -69,6 +69,11 @@ class OffersViewBody extends StatelessWidget {
               }
             },
           ),
+        ),
+        const SliverToBoxAdapter(
+          child: SizedBox(
+            height: 40,
+          ),
         )
       ],
     );

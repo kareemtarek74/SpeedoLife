@@ -16,6 +16,7 @@ class ProductsGridViewItem extends StatelessWidget {
   final Product product;
   final List<Product> products;
   final bool? isTrend;
+  final bool? isOffer;
 
   const ProductsGridViewItem({
     super.key,
@@ -27,6 +28,7 @@ class ProductsGridViewItem extends StatelessWidget {
     required this.products,
     this.color = Colors.white,
     this.isTrend = false,
+    this.isOffer,
   });
 
   @override
@@ -109,8 +111,28 @@ class ProductsGridViewItem extends StatelessWidget {
               top: 16,
               left: 16,
               child: isTrend == false
-                  ? SvgPicture.asset(Assets.imagesTag)
-                  : SvgPicture.asset(Assets.imagesTrend),
+                  ? Row(
+                      children: [
+                        SvgPicture.asset(Assets.imagesTag),
+                        const SizedBox(
+                          width: 4,
+                        ),
+                        isOffer == true
+                            ? SvgPicture.asset(Assets.imagesOfferTag)
+                            : const SizedBox(),
+                      ],
+                    )
+                  : Row(
+                      children: [
+                        SvgPicture.asset(Assets.imagesTrendtag),
+                        const SizedBox(
+                          width: 4,
+                        ),
+                        isOffer == true
+                            ? SvgPicture.asset(Assets.imagesOfferTag)
+                            : const SizedBox(),
+                      ],
+                    ),
             ),
           ],
         ),

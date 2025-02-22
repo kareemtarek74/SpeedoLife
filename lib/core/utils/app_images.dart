@@ -93,17 +93,13 @@ class Assets {
   static const String imagesNotificationIcon =
       "assets/images/notification_icon.svg";
 
+  /// Assets for imagesOfferTag
+  /// assets/images/offerTag.svg
+  static const String imagesOfferTag = "assets/images/offerTag.svg";
+
   /// Assets for imagesPassword
   /// assets/images/password.svg
   static const String imagesPassword = "assets/images/password.svg";
-
-  /// Assets for imagesProduct
-  /// assets/images/product.png
-  static const String imagesProduct = "assets/images/product.png";
-
-  /// Assets for imagesSalePageView
-  /// assets/images/salePageView.png
-  static const String imagesSalePageView = "assets/images/salePageView.png";
 
   /// Assets for imagesSearch
   /// assets/images/Search.svg
@@ -119,13 +115,9 @@ class Assets {
 
   /// Assets for imagesTrend tag
   /// assets/images/Trend tag.svg
-  static const String imagesTrend = "assets/images/Trend tag.svg";
+  static const String imagesTrendtag = "assets/images/Trend tag.svg";
 
   /// Assets for imagesVector
   /// assets/images/Vector.svg
   static const String imagesVector = "assets/images/Vector.svg";
-
-  /// Assets for imagesWatchs
-  /// assets/images/watchs.png
-  static const String imagesWatchs = "assets/images/watchs.png";
 }

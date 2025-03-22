@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:speedo_life/Features/Auth/presentation/view/widgets/sign_in_view.dart';
+import 'package:speedo_life/Features/Auth/presentation/view/sign_in_view.dart';
+import 'package:speedo_life/Features/Favourite/User/presentation/pages/contact_us_screen.dart';
+import 'package:speedo_life/Features/Favourite/User/presentation/pages/map_screen.dart';
 import 'package:speedo_life/Features/Home/presentation/widgets/best_selling_products_view.dart';
 import 'package:speedo_life/Features/Main/presentation/views/main_view.dart';
 import 'package:speedo_life/Features/Offers/Presentation/views/offers_produts_view.dart';
@@ -71,6 +73,31 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
             return OffersProdutsView(
               name: name,
               offerId: offerId,
+            );
+          });
+
+    case MapScreen.routeName:
+      return MaterialPageRoute(
+          settings: settings,
+          builder: (context) {
+            final args = settings.arguments as Map<String, dynamic>;
+            final double latitude = args['latitude'] as double;
+            final double longitude = args['longitude'] as double;
+            return MapScreen(
+              latitude: latitude,
+              longitude: longitude,
+            );
+          });
+    case ContactUsScreen.routeName:
+      return MaterialPageRoute(
+          settings: settings,
+          builder: (context) {
+            final args = settings.arguments as Map<String, dynamic>;
+            final String phone = args['phoneNumber'] as String;
+            final String whatsapp = args['whatsapp'] as String;
+            return ContactUsScreen(
+              phone: phone,
+              whatsapp: whatsapp,
             );
           });
     default:

@@ -10,11 +10,13 @@ class CustomPasswordField extends StatefulWidget {
     this.hintStyle,
     required this.hintText,
     this.color,
+    this.onSaved,
   });
   final TextEditingController? controller;
   final TextStyle? hintStyle;
   final String hintText;
   final Color? color;
+  final void Function(String?)? onSaved;
 
   @override
   State<CustomPasswordField> createState() => _CustomPasswordFieldState();
@@ -25,6 +27,7 @@ class _CustomPasswordFieldState extends State<CustomPasswordField> {
   @override
   Widget build(BuildContext context) {
     return CustomTextFormField(
+      onSaved: widget.onSaved,
       prefixIcon: SvgPicture.asset(
         Assets.imagesPassword,
         height: 24,

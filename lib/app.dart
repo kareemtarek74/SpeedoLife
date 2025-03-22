@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:overlay_support/overlay_support.dart';
+import 'package:speedo_life/Features/Auth/presentation/view/sign_in_view.dart';
 import 'package:speedo_life/Features/Main/presentation/cubits/buttom_navigation_cubit.dart';
-import 'package:speedo_life/Features/Main/presentation/views/main_view.dart';
 import 'package:speedo_life/core/Network/connection_cubit.dart';
 import 'package:speedo_life/core/helper_function/on_generate_function.dart';
 import 'package:speedo_life/core/widgets/disconnected_screen.dart';
@@ -53,7 +53,7 @@ class _SpeedoLifeAppState extends State<SpeedoLifeApp> {
                 locale: const Locale('ar'),
                 debugShowCheckedModeBanner: false,
                 onGenerateRoute: onGenerateRoute,
-                initialRoute: MainView.routeName,
+                initialRoute: SignInView.routeName,
               );
             }
           },

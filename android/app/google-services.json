@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "273673934089",
+    "project_id": "speedo-life",
+    "storage_bucket": "speedo-life.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:273673934089:android:d7ed7b0997fd13a242afd8",
+        "android_client_info": {
+          "package_name": "com.example.speedo_life"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9vCd_OIDnGjJ_89zK2pDz-afRDgc2nGg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

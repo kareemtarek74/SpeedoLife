@@ -1,6 +1,6 @@
 class AppStrings {
-  static const String appName = 'QubeCommerce';
-  static const String appNameLogin = 'QubeCommerce_App';
+  static const String appName = 'SpeedoLife';
+  static const String appNameLogin = 'SpeedoLife_App';
   static const String password = 'password';
   static const String fontFamilySST = 'SST';
   static const String fontFamilyGilroy = 'Gilroy';

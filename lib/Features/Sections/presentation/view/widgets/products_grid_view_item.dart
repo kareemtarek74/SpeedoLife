@@ -6,6 +6,7 @@ import 'package:speedo_life/core/utils/app_images.dart';
 import 'package:speedo_life/core/utils/text_styles.dart';
 import 'package:speedo_life/core/widgets/cached_images.dart';
 import 'package:speedo_life/core/widgets/custom_cart_button.dart';
+import 'package:speedo_life/core/widgets/favourite_icon.dart';
 
 class ProductsGridViewItem extends StatelessWidget {
   final String name;
@@ -99,13 +100,10 @@ class ProductsGridViewItem extends StatelessWidget {
                 ),
               ),
             ),
-            Positioned(
+            const Positioned(
               top: 0,
               right: 0,
-              child: IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.favorite_outline),
-              ),
+              child: FavouriteIcon(),
             ),
             Positioned(
               top: 16,

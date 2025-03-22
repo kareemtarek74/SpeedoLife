@@ -1,6 +1,17 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:speedo_life/Features/Auth/Data/Repos/auth_repo_impl.dart';
+import 'package:speedo_life/Features/Auth/domain/Repos/auth_repo.dart';
+import 'package:speedo_life/Features/Auth/domain/UseCases/auth_usecase.dart';
+import 'package:speedo_life/Features/Auth/presentation/cubits/SignIn/sign_in_cubit.dart';
+import 'package:speedo_life/Features/Auth/presentation/cubits/SignUp/sign_up_cubit.dart';
+import 'package:speedo_life/Features/Favourite/User/data/Repos/user_repo_impl.dart';
+import 'package:speedo_life/Features/Favourite/User/data/datasource/user_local_data_source.dart';
+import 'package:speedo_life/Features/Favourite/User/data/datasource/user_remote_data_source.dart';
+import 'package:speedo_life/Features/Favourite/User/domain/Repos/user_repo.dart';
+import 'package:speedo_life/Features/Favourite/User/domain/usecases/user_usecases.dart';
+import 'package:speedo_life/Features/Favourite/User/presentation/cubits/cubit/user_info_cubit.dart';
 import 'package:speedo_life/Features/Home/Data/DataSource/home_local_data_source.dart';
 import 'package:speedo_life/Features/Home/Data/DataSource/home_remote_data_source.dart';
 import 'package:speedo_life/Features/Home/Data/Repos/home_repo_impl.dart';
@@ -41,6 +52,7 @@ import 'package:speedo_life/core/Api/failure_handler.dart';
 import 'package:speedo_life/core/Api/http_service.dart';
 import 'package:speedo_life/core/Api/http_service_impl.dart';
 import 'package:speedo_life/core/Network/connection_cubit.dart';
+import 'package:speedo_life/core/services/firebase_auth_services.dart';
 
 final sl = GetIt.instance;
 final serviceLocator = sl;
@@ -85,6 +97,8 @@ Future<void> init() async {
   //! ############################### Service ###############################
   serviceLocator.registerLazySingleton<FailureHandler>(() => FailureHandler());
   serviceLocator.registerLazySingleton<HttpService>(() => HttpServiceImpl());
+  serviceLocator.registerLazySingleton<FirebaseAuthServices>(
+      () => FirebaseAuthServices());
 
   //! ################################ Datasources #################################
 
@@ -114,7 +128,15 @@ Future<void> init() async {
   sl.registerLazySingleton<OfferProductsRemoteDatasource>(
       () => OfferProductsRemoteDataSourceImpl());
 
+  sl.registerLazySingleton<UserRemoteDataSource>(
+      () => UserRemoteDataSourceImpl());
+
+  sl.registerLazySingleton<UserLocalDataSource>(
+      () => UserLocalDataSourceImpl(sl()));
+
   //! ################################# Repository #################################
+
+  serviceLocator.registerLazySingleton<AuthRepo>(() => AuthRepoImpl());
 
   serviceLocator
       .registerLazySingleton<HomeRepository>(() => HomeRepositoryImpl());
@@ -132,7 +154,11 @@ Future<void> init() async {
   serviceLocator
       .registerLazySingleton<OfferProductsRepo>(() => OfferProductsRepoImpl());
 
+  serviceLocator.registerLazySingleton<UserRepo>(() => UserRepositoryImpl());
+
   //! ################################# Usecases #################################
+  serviceLocator.registerLazySingleton(() => FetchAuthUseCase());
+
   serviceLocator.registerLazySingleton(() => FetchHomeDataUseCase());
 
   serviceLocator.registerLazySingleton(() => FetchCategoriesUseCase());
@@ -143,11 +169,16 @@ Future<void> init() async {
 
   serviceLocator.registerLazySingleton(() => FetchOfferProductsUseCase());
 
+  serviceLocator.registerLazySingleton(() => FetchUserInfoUseCase());
+
   //! ############################### Bloc Or Cubit ###############################
+  serviceLocator.registerFactory(() => SignUpCubit());
+  serviceLocator.registerFactory(() => SignInCubit());
   serviceLocator.registerFactory(() => HomeCubit());
   serviceLocator.registerFactory(() => CategoriesCubit());
   serviceLocator.registerFactory(() => ProductsCubit());
   serviceLocator.registerFactory(() => OffersCubit());
   serviceLocator.registerFactory(() => OfferCategoriesCubit());
   serviceLocator.registerFactory(() => OfferProductsCubit());
+  serviceLocator.registerFactory(() => UserInfoCubit());
 }

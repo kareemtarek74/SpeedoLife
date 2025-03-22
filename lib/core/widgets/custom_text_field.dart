@@ -9,7 +9,8 @@ class CustomTextFormField extends StatelessWidget {
       this.controller,
       this.obscureText = false,
       this.prefixIcon,
-      this.hintStyle});
+      this.hintStyle,
+      this.onSaved});
   final TextInputType? keyboardType;
   final String hintText;
   final TextStyle? hintStyle;
@@ -17,13 +18,15 @@ class CustomTextFormField extends StatelessWidget {
   final TextEditingController? controller;
   final bool obscureText;
   final Widget? prefixIcon;
+  final void Function(String?)? onSaved;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onSaved: onSaved,
       controller: controller,
       validator: (value) {
         if (value == null || value.isEmpty) {
-          return 'It is required';
+          return 'هذا الحقل مطلوب';
         }
         return null;
       },

@@ -27,6 +27,10 @@ class Assets {
   static const String imagesActiveImagesUser =
       "assets/images/activeImages/user.svg";
 
+  /// Assets for imagesAddress
+  /// assets/images/address.svg
+  static const String imagesAddress = "assets/images/address.svg";
+
   /// Assets for imagesArrow
   /// assets/images/arrow.svg
   static const String imagesArrow = "assets/images/arrow.svg";
@@ -46,6 +50,10 @@ class Assets {
   /// Assets for imagesCartIcon
   /// assets/images/cartIcon.svg
   static const String imagesCartIcon = "assets/images/cartIcon.svg";
+
+  /// Assets for imagesContact
+  /// assets/images/contact.svg
+  static const String imagesContact = "assets/images/contact.svg";
 
   /// Assets for imagesFilter
   /// assets/images/Filter.svg
@@ -76,9 +84,21 @@ class Assets {
   static const String imagesInActiveImagesUser =
       "assets/images/inActiveImages/user.svg";
 
+  /// Assets for imagesInstagram
+  /// assets/images/instagram.svg
+  static const String imagesInstagram = "assets/images/instagram.svg";
+
   /// Assets for imagesInvoice
   /// assets/images/invoice.svg
   static const String imagesInvoice = "assets/images/invoice.svg";
+
+  /// Assets for imagesLocation
+  /// assets/images/location.svg
+  static const String imagesLocation = "assets/images/location.svg";
+
+  /// Assets for imagesLogin
+  /// assets/images/login.svg
+  static const String imagesLogin = "assets/images/login.svg";
 
   /// Assets for imagesLoginArrow
   /// assets/images/loginArrow.svg
@@ -101,6 +121,10 @@ class Assets {
   /// assets/images/password.svg
   static const String imagesPassword = "assets/images/password.svg";
 
+  /// Assets for imagesPrivacy
+  /// assets/images/privacy.svg
+  static const String imagesPrivacy = "assets/images/privacy.svg";
+
   /// Assets for imagesSearch
   /// assets/images/Search.svg
   static const String imagesSearch = "assets/images/Search.svg";
@@ -120,4 +144,8 @@ class Assets {
   /// Assets for imagesVector
   /// assets/images/Vector.svg
   static const String imagesVector = "assets/images/Vector.svg";
+
+  /// Assets for imagesWhatsapp
+  /// assets/images/whatsapp.svg
+  static const String imagesWhatsapp = "assets/images/whatsapp.svg";
 }

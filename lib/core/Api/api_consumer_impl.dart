@@ -1,4 +1,3 @@
-
 import 'package:dio/dio.dart';
 import 'package:speedo_life/core/Api/api_consumer.dart';
 import 'package:speedo_life/core/Api/http_service.dart';
@@ -23,7 +22,8 @@ class ApiConsumerImpl implements ApiConsumer {
   @override
   Future<Response> put(String path,
       {Object? body, RequestData? requestData}) async {
-    return await httpService.put(path, requestBody: body, requestData: requestData);
+    return await httpService.put(path,
+        requestBody: body, requestData: requestData);
   }
 
   @override
